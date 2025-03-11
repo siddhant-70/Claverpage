@@ -1,6 +1,6 @@
-# My Custom Homepage
+# Claverpage
 
-This repository contains the source code for my custom homepage. You are welcome to use it, but please respect the following terms:
+This repository contains the source code for my custom homepage, **Claverpage**. You are welcome to use it, but please respect the following terms:
 
 - **Access and Use**: You can access and use this code for personal or non-commercial purposes.
 - **No Modification**: You are not allowed to modify or create derivative works without my explicit permission.
