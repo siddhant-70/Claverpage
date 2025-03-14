@@ -1,0 +1,2054 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="copyright" content="© 2025 SID - All rights reserved">
+    <title>Custom Homepage</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Product+Sans:wght@400;700&family=Inter:wght@400;600&display=swap" />
+    <style>
+        
+        :root {
+            --primary-bg: #121212;
+            --search-bg: rgba(200, 200, 200, 0.2);
+            --options-bg: rgba(40, 40, 40, 0.8);
+            --text-color: white;
+            --animation-timing: 0.3s;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--primary-bg);
+            color: var(--text-color);
+            font-family: 'Product Sans', sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+            padding: 20px 10px;
+            transition: filter var(--animation-timing) ease-in-out;
+            overflow-x: hidden;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            width: 100%;
+            transition: transform var(--animation-timing) ease-in-out;
+            position: relative;
+            animation: slideIn 0.6s ease-out;
+        }
+
+        h1 {
+            font-size: 45px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            transition: all var(--animation-timing) cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            position: relative;
+            z-index: 2;
+        }
+
+        h1:hover {
+            transform: scale(1.05);
+        }
+
+        .subtext {
+            font-size: 16px;
+            font-weight: bold;
+            background: linear-gradient(90deg, #4285F4, #EA4335, #FBBC05, #34A853);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 300% 100%;
+            animation: gradientShift 6s infinite linear;
+            margin-bottom: 35px;
+            transition: all var(--animation-timing) ease-in-out;
+        }
+
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+
+        .search-container {
+            display: flex;
+            align-items: center;
+            background: var(--search-bg);
+            border-radius: 35px;
+            padding: 20px 25px;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0px 2px 4px rgba(255, 255, 255, 0.05);
+            margin-bottom: 40px;
+            transition: all var(--animation-timing) cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 1;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .search-container::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #4285F4, #EA4335);
+            transition: all var(--animation-timing) ease-in-out;
+            transform: translateX(-50%);
+        }
+
+        .search-container:focus-within::after {
+            width: 100%;
+        }
+
+        .search-bar {
+            flex: 1;
+            background: none;
+            border: none;
+            outline: none;
+            color: var(--text-color);
+            font-size: 16px;
+            font-family: 'Product Sans', sans-serif;
+        }
+
+        .search-bar::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+            transition: color var(--animation-timing) ease;
+        }
+
+        .search-bar:focus::placeholder {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .wrapper {
+            background: rgba(37, 37, 37, 0.7);
+            border-radius: 28px;
+            padding: 11px 0px;
+            display: flex;
+            flex-direction: column;
+            width: 95%;
+            max-width: 500px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            margin-bottom: 16px;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .container-shortcuts {
+            display: flex;
+            gap: 16px;
+            padding: 5px 24px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+            scroll-snap-type: x mandatory;
+            padding-right: 40px;
+        }
+
+        .container-shortcuts::-webkit-scrollbar {
+            display: none;
+        }
+
+        .shortcut {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+            width: 30px;
+            height: 85px;
+            min-width: 60px;
+            position: relative;
+            scroll-snap-align: start;
+        }
+
+        .icon-wrapper {
+            width: 48px;
+            height: 48px;
+            background: rgba(45, 45, 45, 0.9);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: transform 0.2s ease;
+            margin: 2px;
+        }
+
+        .icon-wrapper:hover {
+            transform: scale(1.05);
+        }
+
+        .icon-wrapper img {
+            width: 26px;
+            height: 26px;
+            border-radius: 8px;
+        }
+
+        .shortcut span {
+            color: #9FA6B2;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            height:35px; /* Fixed height for text area */
+            display: flex; /* Replace "flex" with "block" if you want */
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 0.2px;
+            width: 90%;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+
+        .title {
+            font-size: 15px;
+            font-weight: 600;
+            text-align: left;
+            margin: 3px;
+            margin-bottom: 10px;
+            margin-left: 24px;
+            color: rgba(255, 255, 255, 0.7);
+            text-transform: bold;
+            letter-spacing: 1px;
+            font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            cursor: pointer;
+            user-select: none;
+            transition: opacity 0.2s ease;
+        }
+
+        .title:hover {
+            opacity: 0.8;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-backdrop {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1001;
+        }
+
+        .modal-title {
+            font-size: 34px;
+            font-weight: 700;
+            color: white;
+            text-transform: capitalize;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin-bottom: 20px;
+            z-index: 1003;
+        }
+
+        .modal-content {
+            background: rgba(37, 37, 37, 0.95);
+            border-radius: 28px;
+            padding: 5px;
+            width: 90%;
+            max-width: 800px;
+            max-height: 48vh;
+            overflow-y: auto;
+            position: relative;
+            transform: scale(0.95) translateY(20px);
+            opacity: 0;
+            transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+            z-index: 1002;
+            box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.3);
+        }
+
+        .modal.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal.active .modal-backdrop {
+            opacity: 1;
+        }
+
+        .modal.active .modal-content {
+            transform: scale(1) translateY(0);
+            opacity: 1;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            padding: 10px;
+            justify-items: center;
+        }
+
+        @media (min-width: 600px) {
+            .grid-container {
+                grid-template-columns: repeat(5, 1fr);
+            }
+        }
+
+        .modal .shortcut {
+            animation: fadeInScale 0.3s ease forwards;
+            opacity: 0;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .search-options {
+            position: absolute;
+            top: 100px;
+            background: var(--options-bg);
+            padding: 20px;
+            border-radius: 15px;
+            display: none;
+            flex-direction: column;
+            gap: 15px;
+            backdrop-filter: blur(10px);
+            transition: all var(--animation-timing) cubic-bezier(0.4, 0, 0.2, 1);
+            z-index: 2;
+            box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.5);
+            transform: translateY(-20px) scale(0.95);
+            opacity: 0;
+        }
+
+        .search-options.active {
+            transform: translateY(0) scale(1);
+            opacity: 1;
+        }
+
+        .search-options button {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: var(--text-color);
+            font-weight: bold;
+            font-size: 17px;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all var(--animation-timing) ease-in-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .search-options button:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-2px);
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .blur-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            opacity: 0;
+            display: none;
+            z-index: 2;
+            transition: all var(--animation-timing) ease-in-out;
+            backdrop-filter: blur(10px);
+            pointer-events: none;
+        }
+
+        .blur-bg.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .search-focus .wrapper {
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+        }
+
+        .search-focus .container {
+            z-index: 5;
+        }
+
+        @keyframes searchFocus {
+            from {
+                transform: translateY(0);
+                opacity: 1;
+            }
+            to {
+                transform: translateY(-60px);
+                opacity: 1;
+            }
+        }
+
+        .search-focus #searchContainer,
+        .search-focus #googleTitle {
+            z-index: 10;
+            position: relative;
+        }
+
+        .wrapper {
+            transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+            will-change: transform, opacity;
+        }
+        
+        .footer {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 10px 20px;
+            z-index: 1;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .separator {
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        .about-link {
+            cursor: pointer;
+            transition: opacity 0.2s ease;
+            color: rgba(255, 255, 255, 0.5); 
+        }
+
+        .about-link:hover {
+            opacity: 0.8;
+        }
+
+        .about-content {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .about-text {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .about-text p {
+            font-size: 18px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .social-icon {
+            transition: transform 0.2s ease;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.1);
+        }
+
+        .suggestions-container {
+            position: absolute;
+            top: 21%;
+            left: 50%;
+            transform: translateX(-50%) translateY(5px) scale(0.98);
+            width: 80%;
+            max-width: 600px;
+            background: rgba(45, 45, 45, 0.95);
+            border-radius: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            z-index: 11;
+            overflow: hidden;
+            opacity: 0;
+            display: none;
+            transition: all var(--animation-timing) cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+
+        .suggestions-container.active {
+            opacity: 1;
+            transform: translateX(-50%) translateY(10px) scale(1);
+        }
+
+        .suggestion-item {
+            padding: 15px 20px;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Product Sans', sans-serif;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .suggestion-item {
+            padding: 15px 20px;
+            color: rgba(255, 255, 255, 0.8);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            font-family: 'Product Sans', sans-serif;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+        }
+
+        .suggestion-item svg {
+            width: 16px;
+            height: 16px;
+            margin-right: 12px;
+            opacity: 0.7;
+            fill: #aaaaaa;
+        }
+
+        .suggestion-item:hover,
+        .suggestion-item.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 1);
+        }
+
+        .search-container {
+            margin-bottom: 15px;
+            position: relative;
+        }
+
+        .search-container.with-suggestions {
+            margin-bottom: 70px;
+        }
+        .search-container, .wrapper, .modal-content, .shortcut {
+            will-change: transform, opacity;
+            transform: translateZ(0);
+        }
+        
+        .shortcut-row {
+          display: flex;
+          gap: 16px;
+          width: 95%;
+          max-width: 500px;
+        }
+
+        .shortcut-row .wrapper {
+          width: 48%;
+          margin-bottom: 16px;
+          flex: 1;
+        }
+        
+        .button-categories {
+            display: flex;
+            justify-content: space-between;
+            gap: 16px;
+            width: 95%;
+            max-width: 500px;
+            margin-bottom: 16px;
+        }
+
+        .category-button {
+            flex: 1;
+            background: rgba(37, 37, 37, 0.7);
+            border-radius: 28px;
+            padding: 18px 0;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        .category-button:hover {
+            background: rgba(50, 50, 50, 0.8);
+            transform: translateY(-2px);
+        }
+
+        .category-button span {
+            font-size: 18px;
+            font-weight: 600;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        * {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        .search-bar {
+            -webkit-user-select: auto;
+            -moz-user-select: auto;
+            -ms-user-select: auto;
+            user-select: auto;
+        }
+        
+.edit-shortcuts-container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    max-height: 60vh;
+}
+
+.shortcuts-list {
+    max-height: 30vh;
+    overflow-y: auto;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: rgba(30, 30, 30, 0.5);
+    border-radius: 15px;
+}
+
+.shortcut-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 15px;
+    margin-bottom: 8px;
+    background: rgba(50, 50, 50, 0.8);
+    border-radius: 12px;
+    transition: all 0.2s ease;
+}
+
+.shortcut-item:hover {
+    background: rgba(60, 60, 60, 0.9);
+    transform: translateY(-2px);
+}
+
+.shortcut-item-info {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.shortcut-item-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: rgba(40, 40, 40, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.shortcut-item-icon img {
+    width: 20px;
+    height: 20px;
+}
+
+.shortcut-item-name {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.shortcut-item-url {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    max-width: 200px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.shortcut-item-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.remove-shortcut-btn {
+    background: rgba(255, 50, 50, 0.2);
+    color: rgba(255, 120, 120, 0.9);
+    border: none;
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.remove-shortcut-btn:hover {
+    background: rgba(255, 70, 70, 0.3);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.add-shortcut-form {
+    padding: 15px;
+    background: rgba(30, 30, 30, 0.5);
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.add-shortcut-form h3 {
+    font-size: 16px;
+    margin-bottom: 15px;
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.form-group {
+    margin-bottom: 12px;
+}
+
+.edit-input {
+    width: 100%;
+    padding: 12px 15px;
+    background: rgba(40, 40, 40, 0.8);
+    border: 1px solid rgba(60, 60, 60, 0.8);
+    border-radius: 10px;
+    color: white;
+    font-family: 'Product Sans', sans-serif;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.edit-input:focus {
+    border-color: rgba(66, 133, 244, 0.7);
+    outline: none;
+    background: rgba(50, 50, 50, 0.8);
+}
+
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.edit-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 12px;
+    margin-top: 10px;
+}
+
+.edit-btn {
+    padding: 10px 20px;
+    border-radius: 12px;
+    font-family: 'Product Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.add-btn {
+    background: rgba(66, 133, 244, 0.7);
+    color: white;
+}
+
+.add-btn:hover {
+    background: rgba(66, 133, 244, 0.9);
+    transform: translateY(-2px);
+}
+
+.save-btn {
+    background: rgba(52, 168, 83, 0.7);
+    color: white;
+}
+
+.save-btn:hover {
+    background: rgba(52, 168, 83, 0.9);
+    transform: translateY(-2px);
+}
+
+.cancel-btn {
+    background: rgba(80, 80, 80, 0.7);
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.cancel-btn:hover {
+    background: rgba(100, 100, 100, 0.8);
+    transform: translateY(-2px);
+}
+
+.edit-btn-container {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 15px;
+    padding: 0 15px;
+}
+
+.edit-category-btn {
+    background: rgba(66, 133, 244, 0.7);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 8px 15px;
+    font-size: 13px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.edit-category-btn:hover {
+    background: rgba(66, 133, 244, 0.9);
+    transform: translateY(-2px);
+}
+
+.edit-icon {
+    width: 14px;
+    height: 14px;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.saving {
+    position: relative;
+    color: transparent;
+}
+
+.saving::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 16px;
+    height: 16px;
+    margin-top: -8px;
+    margin-left: -8px;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    border-top: 2px solid white;
+    animation: spin 0.8s linear infinite;
+}
+
+.toast {
+    position: fixed;
+    bottom: 30px;
+    left: 50%;
+    transform: translateX(-50%) translateY(100px);
+    background: rgba(52, 168, 83, 0.9);
+    color: white;
+    padding: 12px 25px;
+    border-radius: 15px;
+    font-size: 14px;
+    font-weight: 500;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    opacity: 0;
+    transition: all 0.3s ease;
+    z-index: 9999;
+}
+
+.toast.error {
+    background: rgba(234, 67, 53, 0.9);
+}
+
+.toast.show {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+}
+
+.floating-edit-btn {
+    position: fixed;
+    margin: 7px;
+    background: rgba(66, 133, 244, 0.9);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 18px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: opacity 0.2s ease;
+    display: flex;
+    align-items: centre;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    z-index: 11000;
+    opacity: 0;
+}
+
+.floating-edit-btn.show {
+    opacity: 1;
+}
+
+.floating-edit-btn:hover {
+    background: rgba(66, 133, 244, 1);
+}
+    </style>
+<link rel="preload" href="https://www.google.com/s2/favicons?sz=64&domain=gmail.com" as="image">
+<link rel="preload" href="https://www.google.com/s2/favicons?sz=64&domain=github.com" as="image">
+<!-- Add this at the top of your <head> section -->
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+
+<script>
+  // Your web app's Firebase configuration
+  const firebaseConfig = {
+    apiKey: "AIzaSyCmUPSQHLABZ2fI1LcUSEdB-6E9YssCABg",
+    authDomain: "claverpages.firebaseapp.com",
+    projectId: "",
+    storageBucket: "claverpages.firebasestorage.app",
+    messagingSenderId: "148787266143",
+    appId: "1:148787266143:web:62724e5086e0db5ff411ea",
+    measurementId: "G-XW58K4MRG5"
+  };
+
+  // Initialize Firebase
+  const app = firebase.initializeApp(firebaseConfig);
+  const db = firebase.firestore();
+</script>
+</head>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore-compat.js"></script>
+<body>
+    <div class="blur-bg" id="blurBgSearch" onclick="resetView()"></div>
+    <div class="blur-bg" id="blurBgTitle" onclick="resetView()"></div>
+    
+    <div class="container" id="container">
+        <h1 id="googleTitle" onclick="toggleSearchOptions()">Google</h1>
+        <div class="search-options" id="searchOptions">
+            <button onclick="setSearchEngine('Google')">Google</button>
+            <button onclick="setSearchEngine('Bing')">Bing</button>
+            <button onclick="setSearchEngine('DuckDuckGo')">DuckDuckGo</button>
+            <button onclick="setSearchEngine('Brave')">Brave</button>
+            <button onclick="setSearchEngine('Startpage')">Startpage</button>
+        </div>
+        <p class="subtext" id="helloText">Hello, Siddhant</p>
+        
+        <div class="search-container" id="searchContainer">
+            <input type="text" class="search-bar" id="searchInput" placeholder="Search or type URL" onfocus="animateSearchBar()" onkeydown="handleSearch(event)">
+        </div>
+
+        <!-- Tools Block -->
+        <div class="wrapper">
+            <div class="title" onclick="openModal('tools')">Tools</div>
+            <div class="container-shortcuts" id="tools-container">      
+            </div>
+        </div>
+                <div class="wrapper">
+            <div class="title" onclick="openModal('productivity')">Productivity</div>
+            <div class="container-shortcuts" id="productivity-container">      
+            </div>
+        </div>
+        <!-- For Adding Shortcut Block -->
+
+<!--
+This code allows two shortcut blocks to appear in a single row.  
+To enable this, move the code below outside of this comment and remove the comment tags.  
+Replace "rename" with your desired container name.
+
+     NOTE: Shortcut Blocks Row
+        <div class="shortcut-row">
+     NOTE: Row Shortcut Block 1
+        <div class="wrapper">
+            <div class="title" onclick="openModal('rename')">Rename</div>
+            <div class="container-shortcuts" id="rename-container">
+            </div>
+        </div>    
+     NOTE: Row Shortcut Block 2
+        <div class="wrapper">
+            <div class="title" onclick="openModal('rename')">Rename</div>
+            <div class="container-shortcuts" id="rename-container">
+            </div>
+        </div>
+    </div>
+-->
+
+    <!-- Button Categories -->
+    <div class="button-categories">
+        <div class="category-button" onclick="openModal('utilities')">
+            <span>Utilities</span>
+        </div>
+        <div class="category-button" onclick="openModal('social')">
+            <span>Social</span>
+        </div>
+    </div>
+    <!-- Hidden containers for the shortcuts in these categories -->
+    <div id="utilities-container" style="display: none;"></div>
+    <div id="social-container" style="display: none;"></div>
+	
+        <!-- For Adding Shortcut Block -->
+
+    </div>
+    <div class="modal" id="shortcut-modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-title" id="modal-title"></div>
+        <div class="modal-content">
+            <div class="grid-container" id="modal-grid"></div>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div class="modal" id="about-modal">
+        <div class="modal-backdrop"></div>
+        <div class="modal-title">About</div>
+        <div class="modal-content about-content">
+            <div class="about-text">
+                <p>Made with ❤️ by Siddhant</p>
+                <p>Designed for productivity and efficiency</p>
+                <div class="social-links">
+                    <a href="https://github.com/siddhant-70" target="_blank" class="social-icon">
+                        <div class="icon-wrapper">
+                            <img src="https://www.google.com/s2/favicons?sz=64&domain=github.com" alt="GitHub" loading="lazy">
+                        </div>
+                    </a>
+                    <a href="https://instagram.com/siddhant.07_" target="_blank" class="social-icon">
+                        <div class="icon-wrapper">
+                            <img src="https://www.google.com/s2/favicons?sz=64&domain=instagram.com" alt="Instagram" loading="lazy">
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<div class="modal" id="edit-shortcuts-modal">
+    <div class="modal-backdrop"></div>
+    <div class="modal-title">Edit Shortcuts</div>
+    <div class="modal-content">
+        <div class="edit-shortcuts-container">
+            <div class="shortcuts-list" id="edit-shortcuts-list">
+            </div>
+            <div class="add-shortcut-form">
+                <h3>Add New Shortcut</h3>
+                <div class="form-group">
+                    <input type="text" id="new-shortcut-name" placeholder="Name" class="edit-input">
+                </div>
+                <div class="form-group">
+                    <input type="text" id="new-shortcut-url" placeholder="URL (e.g., https://example.com)" class="edit-input">
+                </div>
+                <div class="form-actions">
+                    <button id="add-shortcut-btn" class="edit-btn add-btn">Add Shortcut</button>
+                </div>
+            </div>
+        </div>
+        <div class="edit-actions">
+            <button id="save-shortcuts-btn" class="edit-btn save-btn">Save Changes</button>
+            <button id="cancel-edit-btn" class="edit-btn cancel-btn">Cancel</button>
+        </div>
+    </div>
+</div>
+
+    <div class="footer">
+        <span>© 2025 SID</span>
+        <span class="separator">|</span>
+        <span class="about-link" onclick="openAboutModal()">About</span>
+    </div>
+        </div>
+    <script>
+        let selectedEngine = 'Google';
+
+        function handleSearch(event) {
+            if (event.key === 'Enter') {
+                const query = document.getElementById("searchInput").value;
+                if (query) {
+                    const engines = {
+                        'Google': 'https://www.google.com/search?q=',
+                        'Bing': 'https://www.bing.com/search?q=',
+                        'DuckDuckGo': 'https://duckduckgo.com/?q=',
+                        'Brave': 'https://search.brave.com/search?q=',
+                        'Startpage': 'https://www.startpage.com/do/search?q='
+                    };
+                    
+                    const searchContainer = document.getElementById("searchContainer");
+                    searchContainer.style.transform = "scale(0.95)";
+                    searchContainer.style.opacity = "0";
+                    
+                    setTimeout(() => {
+                        window.location.href = engines[selectedEngine] + encodeURIComponent(query);
+                    }, 300);
+                }
+            }
+        }
+
+        function toggleSearchOptions() {
+            const options = document.getElementById("searchOptions");
+            const title = document.getElementById("googleTitle");
+            const blurBg = document.getElementById("blurBgTitle");
+    
+            if (options.classList.contains("active")) {
+                resetView();
+            } else {
+                title.style.transform = "scale(1.1)";
+                options.style.display = "flex";
+                blurBg.style.display = "block";
+               
+                setTimeout(() => {
+                    options.classList.add("active");
+                    blurBg.classList.add("active");
+                }, 10);
+                
+                document.getElementById("searchContainer").style.opacity = "0.5";
+
+                const wrappers = document.querySelectorAll('.wrapper');
+                wrappers.forEach(wrapper => {
+                    wrapper.style.opacity = "0.5";
+                });
+            }
+        }
+        function setSearchEngine(engine) {
+            selectedEngine = engine;
+            const title = document.getElementById("googleTitle");
+            
+            title.style.transform = "scale(0.9)";
+            title.style.opacity = "0";
+            
+            setTimeout(() => {
+                title.textContent = engine;
+                title.style.transform = "scale(1.1)";
+                title.style.opacity = "1";
+                
+                setTimeout(() => {
+                    title.style.transform = "scale(1)";
+                }, 150);
+            }, 150);
+            
+            resetView();
+        }
+
+function openModal(type) {
+    const modal = document.getElementById('shortcut-modal');
+    const modalTitle = document.getElementById('modal-title');
+    const modalGrid = document.getElementById('modal-grid');
+    const container = document.getElementById(`${type}-container`);
+
+    modalGrid.innerHTML = '';
+    modalTitle.textContent = type.charAt(0).toUpperCase() + type.slice(1);
+    
+    // No edit button inside modal anymore
+    
+    const fragment = document.createDocumentFragment();
+    const shortcuts = container.querySelectorAll('.shortcut');
+
+    shortcuts.forEach((shortcut, index) => {
+        const clone = shortcut.cloneNode(true);
+        clone.style.animationDelay = `${index * 0.05}s`;
+        fragment.appendChild(clone);
+    });
+
+    modalGrid.appendChild(fragment);
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+    document.getElementById('container').style.filter = 'blur(5px)';
+    
+    // Show floating edit button
+    showFloatingEditButton(type);
+}
+
+        function animateSearchBar() {
+            const searchContainer = document.getElementById("searchContainer");
+            const blurBg = document.getElementById("blurBgSearch");
+            
+            document.getElementById("googleTitle").style.transform = "translateY(-20px)";
+            searchContainer.style.transform = "translateY(-60px)";
+            document.getElementById("helloText").style.opacity = "0";
+            
+            blurBg.style.display = "block";
+            setTimeout(() => {
+                blurBg.classList.add("active");
+            }, 10);
+
+            searchContainer.style.zIndex = "10";
+            searchContainer.style.boxShadow = "0px 8px 20px rgba(255, 255, 255, 0.15)";
+            
+            const wrappers = document.querySelectorAll('.wrapper');
+            wrappers.forEach(wrapper => {
+                wrapper.style.opacity = "0.5";
+                wrapper.style.transform = "translateY(-30px)";
+            });
+        }
+
+        function resetView() {
+            const options = document.getElementById("searchOptions");
+            const title = document.getElementById("googleTitle");
+            const searchContainer = document.getElementById("searchContainer");
+            
+            title.style.transform = "translateY(0) scale(1)";
+            
+            searchContainer.style.transform = "translateY(0)";
+            searchContainer.style.zIndex = "1";
+            document.getElementById("helloText").style.opacity = "1";
+            
+            options.classList.remove("active");
+            document.getElementById("blurBgSearch").classList.remove("active");
+            document.getElementById("blurBgTitle").classList.remove("active");
+            
+            const wrappers = document.querySelectorAll('.wrapper');
+            wrappers.forEach(wrapper => {
+                wrapper.style.opacity = "1";
+                wrapper.style.transform = "translateY(0)";
+                wrapper.style.pointerEvents = "auto";
+            });
+            
+            setTimeout(() => {
+                document.getElementById("blurBgSearch").style.display = "none";
+                document.getElementById("blurBgTitle").style.display = "none";
+                options.style.display = "none";
+                searchContainer.style.opacity = "1";
+                searchContainer.style.boxShadow = "0px 4px 10px rgba(255, 255, 255, 0.1)";
+            }, 300);
+        }
+        
+        function setupSearchContainerClickHandler() {
+    // Remove any existing handler with the same functionality
+    // (This requires adding a named function reference that you can remove)
+    document.removeEventListener('click', handleSearchContainerOutsideClick);
+    
+    // Add the handler
+    document.addEventListener('click', handleSearchContainerOutsideClick);
+}
+
+function handleSearchContainerOutsideClick(e) {
+    const searchContainer = document.getElementById("searchContainer");
+    const searchInput = document.getElementById("searchInput");
+    const searchBg = document.getElementById("blurBgSearch");
+    
+    if (!searchContainer?.contains(e.target) && 
+        !searchInput?.contains(e.target) && 
+        searchBg?.classList.contains("active")) {
+        
+        document.getElementById("googleTitle").style.transform = "translateY(0)";
+        searchContainer.style.transform = "translateY(0)";
+        searchContainer.style.zIndex = "1";
+        document.getElementById("helloText").style.opacity = "1";
+        
+        searchBg.classList.remove("active");
+        setTimeout(() => {
+            searchBg.style.display = "none";
+        }, 300);
+        
+        searchContainer.style.boxShadow = "0px 4px 10px rgba(255, 255, 255, 0.1)";
+        
+        const wrappers = document.querySelectorAll('.wrapper');
+        wrappers.forEach(wrapper => {
+            wrapper.style.opacity = "1";
+            wrapper.style.transform = "translateY(0)";
+            wrapper.style.pointerEvents = "auto";
+        });
+        
+        searchInput.blur();
+    }
+}
+
+        function openAboutModal() {
+            const modal = document.getElementById('about-modal');
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            document.getElementById('container').style.filter = 'blur(5px)';
+        }
+
+function setupModalEventListeners() {
+    const modals = ['shortcut-modal', 'about-modal', 'edit-shortcuts-modal'];
+    
+    modals.forEach(modalId => {
+        const modal = document.getElementById(modalId);
+        if (modal) {
+            // Remove any existing listeners to prevent duplicates
+            const newModal = modal.cloneNode(true);
+            modal.parentNode.replaceChild(newModal, modal);
+            
+            newModal.addEventListener('click', function(e) {
+                if (e.target === this || e.target.classList.contains('modal-backdrop')) {
+                    closeModal(modalId);
+                }
+            });
+        }
+    });
+}
+
+function setupSuggestions() {
+    if (!document.getElementById('suggestions-container')) {
+        const suggestionsContainer = document.createElement('div');
+        suggestionsContainer.id = 'suggestions-container';
+        suggestionsContainer.className = 'suggestions-container';
+        
+        const searchContainer = document.getElementById('searchContainer');
+        searchContainer.parentNode.insertBefore(suggestionsContainer, searchContainer.nextSibling);
+    }
+}
+
+function fetchSuggestions(query) {
+    if (!query || query.trim() === '') {
+        hideSuggestions();
+        return;
+    }
+    
+    const script = document.createElement('script');
+    script.src = `https://suggestqueries.google.com/complete/search?client=chrome&q=${encodeURIComponent(query)}&callback=handleSuggestions`;
+    document.body.appendChild(script);
+    
+    script.onload = function() {
+        document.body.removeChild(script);
+    };
+}
+
+window.handleSuggestions = function(data) {
+    displaySuggestions(data[1]);
+};
+
+function displaySuggestions(suggestions) {
+    const container = document.getElementById('suggestions-container');
+    const searchContainer = document.getElementById('searchContainer');
+
+    if (!suggestions || suggestions.length === 0) {
+        hideSuggestions();
+        return;
+    }
+
+    container.innerHTML = '';
+    
+    suggestions.forEach(suggestion => {
+        const item = document.createElement('div');
+        item.className = 'suggestion-item';
+        
+        item.innerHTML = `
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z"/>
+            </svg>
+            ${suggestion}
+        `;
+
+        item.addEventListener('click', function() {
+            document.getElementById('searchInput').value = suggestion;
+            hideSuggestions();
+            handleSearch({ key: 'Enter' });
+        });
+
+        container.appendChild(item);
+    });
+
+    container.style.display = 'block';
+    searchContainer.classList.add('with-suggestions');
+
+    setTimeout(() => {
+        container.classList.add('active');
+    }, 10);
+}
+
+function hideSuggestions() {
+    const container = document.getElementById('suggestions-container');
+    const searchContainer = document.getElementById('searchContainer');
+    
+    if (container) {
+        container.classList.remove('active');
+        searchContainer.classList.remove('with-suggestions');
+
+        setTimeout(() => {
+            container.style.display = 'none';
+        }, 300);
+    }
+}
+
+function setupSearchEvents() {
+    setupSuggestions();
+    
+    const searchInput = document.getElementById('searchInput');
+    let suggestionDebounceTimer;
+    
+    // Remove any existing listeners to prevent duplicates
+    const newSearchInput = searchInput.cloneNode(true);
+    searchInput.parentNode.replaceChild(newSearchInput, searchInput);
+    
+    // Add event listeners to the new element
+    newSearchInput.addEventListener('input', function() {
+        clearTimeout(suggestionDebounceTimer);
+        suggestionDebounceTimer = setTimeout(() => {
+            fetchSuggestions(this.value);
+        }, 300);
+    });
+    
+    newSearchInput.addEventListener('focus', function() {
+        this.dataset.originalValue = this.value;
+        if (this.value.trim() !== '') {
+            fetchSuggestions(this.value);
+        }
+    });
+    
+    newSearchInput.addEventListener('keydown', function(e) {
+        const container = document.getElementById('suggestions-container');
+        if (!container || container.style.display === 'none') return;
+        
+        const items = container.querySelectorAll('.suggestion-item');
+        if (items.length === 0) return;
+        
+        const activeItem = container.querySelector('.suggestion-item.active');
+        let activeIndex = -1;
+        
+        if (activeItem) {
+            for (let i = 0; i < items.length; i++) {
+                if (items[i] === activeItem) {
+                    activeIndex = i;
+                    break;
+                }
+            }
+        }
+        
+        if (e.key === 'ArrowDown') {
+            e.preventDefault();
+            
+            if (activeIndex < items.length - 1) {
+                if (activeItem) activeItem.classList.remove('active');
+                items[activeIndex + 1].classList.add('active');
+                newSearchInput.value = items[activeIndex + 1].textContent.trim();
+            } else if (activeIndex === -1 && items.length > 0) {
+                items[0].classList.add('active');
+                newSearchInput.value = items[0].textContent.trim();
+            }
+        } else if (e.key === 'ArrowUp') {
+            e.preventDefault();
+            
+            if (activeIndex > 0) {
+                if (activeItem) activeItem.classList.remove('active');
+                items[activeIndex - 1].classList.add('active');
+                newSearchInput.value = items[activeIndex - 1].textContent.trim();
+            } else if (activeIndex === 0) {
+                if (activeItem) activeItem.classList.remove('active');
+                newSearchInput.value = newSearchInput.dataset.originalValue || '';
+            }
+        } else if (e.key === 'Escape') {
+            hideSuggestions();
+        } else if (e.key === 'Enter') {
+            handleSearch(e);
+        }
+    });
+    
+    // Global click handler for suggestions
+    if (!window.suggestionsClickHandlerAdded) {
+        document.addEventListener('click', function(e) {
+            const suggestionsContainer = document.getElementById('suggestions-container');
+            const searchContainer = document.getElementById('searchContainer');
+            
+            if (suggestionsContainer && 
+                !searchContainer.contains(e.target) && 
+                !suggestionsContainer.contains(e.target)) {
+                hideSuggestions();
+            }
+        });
+        window.suggestionsClickHandlerAdded = true;
+    }
+}
+
+        function createShortcutElement(shortcut) {
+          const shortcutDiv = document.createElement('div');
+          shortcutDiv.className = 'shortcut';
+          
+            const displayName = shortcut.name.length > 11 
+                ? shortcut.name.substring(0, 11) + '...' 
+                : shortcut.name;
+  
+          shortcutDiv.innerHTML = `
+            <a href="${shortcut.url}">
+              <div class="icon-wrapper">
+                <img src="${shortcut.icon}" alt="${shortcut.name}" loading="lazy">
+              </div>
+              <span title="${shortcut.name}">${displayName}</span>
+            </a>
+          `;
+  
+          return shortcutDiv;
+        }
+        
+        let devToolsWarning = function() {
+            document.body.innerHTML = "This action is not allowed.";
+            setTimeout(function() {
+                location.reload();
+            }, 1500);
+        };
+
+        let devToolsCheck = setInterval(function() {
+            if (window.outerWidth - window.innerWidth > 160 || window.outerHeight - window.innerHeight > 160) {
+                devToolsWarning();
+                clearInterval(devToolsCheck);
+            }
+        }, 1000);
+
+        document.addEventListener('visibilitychange', function() {
+            if (document.visibilityState === 'hidden') {
+            }
+        });
+        
+// Current category being edited
+let currentEditCategory = '';
+let currentShortcuts = {};
+
+// Create a toast notification
+function showToast(message, isError = false) {
+  let toast = document.querySelector('.toast');
+  
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.className = 'toast';
+    document.body.appendChild(toast);
+  }
+  
+  if (isError) {
+    toast.classList.add('error');
+  } else {
+    toast.classList.remove('error');
+  }
+  
+  toast.textContent = message;
+  toast.classList.add('show');
+  
+  setTimeout(() => {
+    toast.classList.remove('show');
+  }, 3000);
+}
+
+// Open edit shortcuts modal
+function openEditModal(category) {
+  currentEditCategory = category;
+  const modal = document.getElementById('edit-shortcuts-modal');
+  const shortcutsList = document.getElementById('edit-shortcuts-list');
+  const container = document.getElementById(`${category}-container`);
+  
+  // Clone current shortcuts
+  currentShortcuts = getShortcutsFromDOM(container);
+  
+  // Clear current list
+  shortcutsList.innerHTML = '';
+  
+  // Populate edit list
+  currentShortcuts.forEach((shortcut, index) => {
+    const shortcutItem = document.createElement('div');
+    shortcutItem.className = 'shortcut-item';
+    shortcutItem.dataset.index = index;
+    
+    shortcutItem.innerHTML = `
+      <div class="shortcut-item-info">
+        <div class="shortcut-item-icon">
+          <img src="${shortcut.icon}" alt="${shortcut.name}" loading="lazy">
+        </div>
+        <div>
+          <div class="shortcut-item-name">${shortcut.name}</div>
+          <div class="shortcut-item-url">${shortcut.url}</div>
+        </div>
+      </div>
+      <div class="shortcut-item-actions">
+        <button class="remove-shortcut-btn" onclick="removeShortcut(${index})">Remove</button>
+      </div>
+    `;
+    
+    shortcutsList.appendChild(shortcutItem);
+  });
+  
+  // Clear form
+  document.getElementById('new-shortcut-name').value = '';
+  document.getElementById('new-shortcut-url').value = '';
+  
+  // Display modal
+  modal.classList.add('active');
+  document.body.style.overflow = 'hidden';
+  document.getElementById('container').style.filter = 'blur(5px)';
+  
+  // Set up event listeners
+  document.getElementById('add-shortcut-btn').onclick = addNewShortcut;
+  document.getElementById('save-shortcuts-btn').onclick = saveShortcuts;
+  document.getElementById('cancel-edit-btn').onclick = closeEditModal;
+}
+
+function closeEditModal() {
+    closeModal('edit-shortcuts-modal');
+}
+
+// Get shortcuts from DOM
+function getShortcutsFromDOM(container) {
+    const shortcuts = [];
+    const shortcutElements = container.querySelectorAll('.shortcut');
+    
+    shortcutElements.forEach(shortcut => {
+        const link = shortcut.querySelector('a');
+        const img = shortcut.querySelector('img');
+        const span = shortcut.querySelector('span');
+        
+        shortcuts.push({
+            name: span.title || span.textContent,
+            url: link.href,
+            icon: img.src
+        });
+    });
+    
+    return shortcuts;
+}
+
+// Remove shortcut
+function removeShortcut(index) {
+  const shortcutItem = document.querySelector(`.shortcut-item[data-index="${index}"]`);
+  
+  if (shortcutItem) {
+    shortcutItem.style.transform = 'translateX(100px)';
+    shortcutItem.style.opacity = '0';
+    
+    setTimeout(() => {
+      currentShortcuts.splice(index, 1);
+      
+      // Re-render the list
+      const shortcutsList = document.getElementById('edit-shortcuts-list');
+      shortcutsList.innerHTML = '';
+      
+      currentShortcuts.forEach((shortcut, idx) => {
+        const shortcutItem = document.createElement('div');
+        shortcutItem.className = 'shortcut-item';
+        shortcutItem.dataset.index = idx;
+        
+        shortcutItem.innerHTML = `
+          <div class="shortcut-item-info">
+            <div class="shortcut-item-icon">
+              <img src="${shortcut.icon}" alt="${shortcut.name}" loading="lazy">
+            </div>
+            <div>
+              <div class="shortcut-item-name">${shortcut.name}</div>
+              <div class="shortcut-item-url">${shortcut.url}</div>
+            </div>
+          </div>
+          <div class="shortcut-item-actions">
+            <button class="remove-shortcut-btn" onclick="removeShortcut(${idx})">Remove</button>
+          </div>
+        `;
+        
+        shortcutsList.appendChild(shortcutItem);
+      });
+    }, 300);
+  }
+}
+
+// Add new shortcut
+function addNewShortcut() {
+  const nameInput = document.getElementById('new-shortcut-name');
+  const urlInput = document.getElementById('new-shortcut-url');
+  
+  const name = nameInput.value.trim();
+  let url = urlInput.value.trim();
+  
+  if (!name || !url) {
+    showToast('Please enter both name and URL', true);
+    return;
+  }
+  
+  // Add protocol if missing
+  if (!url.startsWith('http://') && !url.startsWith('https://')) {
+    url = 'https://' + url;
+  }
+  
+  // Extract domain for favicon
+  let domain = '';
+  try {
+    domain = new URL(url).hostname;
+  } catch (e) {
+    domain = url.split('/')[0];
+  }
+  
+  const icon = `https://www.google.com/s2/favicons?sz=64&domain=${domain}`;
+  
+  const newShortcut = {
+    name,
+    url,
+    icon
+  };
+  
+  currentShortcuts.push(newShortcut);
+  
+  // Add to the list
+  const shortcutsList = document.getElementById('edit-shortcuts-list');
+  const index = currentShortcuts.length - 1;
+  
+  const shortcutItem = document.createElement('div');
+  shortcutItem.className = 'shortcut-item';
+  shortcutItem.dataset.index = index;
+  
+  shortcutItem.innerHTML = `
+    <div class="shortcut-item-info">
+      <div class="shortcut-item-icon">
+        <img src="${icon}" alt="${name}" loading="lazy">
+      </div>
+      <div>
+        <div class="shortcut-item-name">${name}</div>
+        <div class="shortcut-item-url">${url}</div>
+      </div>
+    </div>
+    <div class="shortcut-item-actions">
+      <button class="remove-shortcut-btn" onclick="removeShortcut(${index})">Remove</button>
+    </div>
+  `;
+  
+  shortcutItem.style.transform = 'translateX(50px)';
+  shortcutItem.style.opacity = '0';
+  shortcutsList.appendChild(shortcutItem);
+  
+  setTimeout(() => {
+    shortcutItem.style.transform = 'translateX(0)';
+    shortcutItem.style.opacity = '1';
+  }, 10);
+  
+  // Clear inputs
+  nameInput.value = '';
+  urlInput.value = '';
+}
+
+// Save shortcuts to Firebase
+function saveShortcuts() {
+  const saveBtn = document.getElementById('save-shortcuts-btn');
+  saveBtn.disabled = true;
+  saveBtn.classList.add('saving');
+  
+  // Get all shortcuts from all categories
+  let allShortcuts = {};
+  
+  // First, get the current state of all categories from Firebase
+  db.collection('shortcuts').doc('categories').get()
+    .then(doc => {
+      if (doc.exists) {
+        allShortcuts = doc.data();
+      }
+      
+      // Update the current category
+      allShortcuts[currentEditCategory] = currentShortcuts;
+      
+      // Save to Firebase
+      return db.collection('shortcuts').doc('categories').set(allShortcuts);
+    })
+    .then(() => {
+      // Update the DOM
+      updateShortcutsInDOM(currentEditCategory, currentShortcuts);
+      
+      // Show success toast
+      showToast('Shortcuts saved successfully!');
+      
+      // Close modal
+      closeEditModal();
+    })
+    .catch(error => {
+      console.error('Error saving shortcuts:', error);
+      showToast('Error saving shortcuts. Please try again.', true);
+    })
+    .finally(() => {
+      saveBtn.disabled = false;
+      saveBtn.classList.remove('saving');
+    });
+}
+
+// Update shortcuts in the DOM
+function updateShortcutsInDOM(category, shortcuts) {
+  const container = document.getElementById(`${category}-container`);
+  
+  // Fade out existing shortcuts
+  const existingShortcuts = container.querySelectorAll('.shortcut');
+  existingShortcuts.forEach(shortcut => {
+    shortcut.style.opacity = '0';
+    shortcut.style.transform = 'scale(0.9)';
+  });
+  
+  setTimeout(() => {
+    // Clear container after fade out
+    container.innerHTML = '';
+    
+    // Add new shortcuts with fade in animation
+    shortcuts.forEach((shortcut, index) => {
+      const shortcutElement = createShortcutElement(shortcut);
+      shortcutElement.style.opacity = '0';
+      shortcutElement.style.transform = 'scale(0.9)';
+      shortcutElement.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+      shortcutElement.style.transitionDelay = `${index * 0.05}s`;
+      container.appendChild(shortcutElement);
+      
+      // Trigger reflow to make sure the transition works
+      void shortcutElement.offsetWidth;
+      
+      // Fade in
+      shortcutElement.style.opacity = '1';
+      shortcutElement.style.transform = 'scale(1)';
+    });
+  }, 300);
+}
+
+// Update loadShortcuts function to use Firebase
+function loadShortcuts() {
+    const fallbackShortcuts = {
+        "tools": [
+            {
+                "name": "GitHub",
+                "url": "https://github.com",
+                "icon": "https://www.google.com/s2/favicons?sz=64&domain=github.com"
+            }
+        ]
+    };
+
+    // Track loaded categories to avoid duplicate loading
+    const loadedCategories = {};
+
+    // Helper function to update UI for shortcuts
+    function updateUIForCategory(category, shortcuts) {
+        const container = document.getElementById(`${category}-container`);
+        if (!container) return;
+        
+        // Skip if this category was already loaded with the same data
+        const shortcutsString = JSON.stringify(shortcuts);
+        if (loadedCategories[category] === shortcutsString) return false;
+        
+        // Update the tracking
+        loadedCategories[category] = shortcutsString;
+        
+        // Clear container and add new shortcuts
+        container.innerHTML = '';
+        shortcuts.forEach(shortcut => {
+            const shortcutElement = createShortcutElement(shortcut);
+            container.appendChild(shortcutElement);
+        });
+        
+        return true;
+    }
+
+    // Step 1: Try quick.json first for immediate display
+    fetch('quick.json')
+        .then(response => response.ok ? response.json() : Promise.reject('Quick shortcuts not found'))
+        .then(quickData => {
+            // Display quick data immediately
+            let updatedCategories = 0;
+            Object.keys(quickData).forEach(category => {
+                if (updateUIForCategory(category, quickData[category])) {
+                    updatedCategories++;
+                }
+            });
+            
+            // Step 2: Try Firebase in parallel
+            return db.collection('shortcuts').doc('categories').get()
+                .then(doc => {
+                    if (!doc.exists) throw new Error('No Firebase data');
+                    
+                    const firebaseData = doc.data();
+                    let firebaseUpdates = 0;
+                    
+                    Object.keys(firebaseData).forEach(category => {
+                        if (updateUIForCategory(category, firebaseData[category])) {
+                            firebaseUpdates++;
+                        }
+                    });
+                    
+                    // Removed the toast for successful Firebase loading
+                    // No toast will be shown when shortcuts load from Firebase
+                    
+                    return firebaseData;
+                })
+                .catch((firebaseError) => {
+                    // Show toast for Firebase failure
+                    showToast('Could not load shortcuts from cloud', true);
+                    console.error('Firebase error:', firebaseError);
+
+                    // Step 3: Try shortcuts.json if Firebase fails
+                    return fetch('shortcuts.json')
+                        .then(response => response.ok ? response.json() : Promise.reject('Shortcuts file not found'))
+                        .then(jsonData => {
+                            // Try to save to Firebase for future use
+                            try {
+                                db.collection('shortcuts').doc('categories').set(jsonData);
+                            } catch (e) {
+                                console.error('Could not save to Firebase:', e);
+                            }
+                            
+                            let jsonUpdates = 0;
+                            Object.keys(jsonData).forEach(category => {
+                                if (updateUIForCategory(category, jsonData[category])) {
+                                    jsonUpdates++;
+                                }
+                            });
+                            
+                            if (jsonUpdates > 0) {
+                                showToast('Shortcuts updated from local file', false);
+                            }
+                            
+                            return jsonData;
+                        });
+                });
+        })
+        .catch(error => {
+            console.error('Error in shortcut loading sequence:', error);
+            
+            // Step 4: Use fallback shortcuts as last resort
+            Object.keys(fallbackShortcuts).forEach(category => {
+                updateUIForCategory(category, fallbackShortcuts[category]);
+            });
+            
+            // Try to save fallback shortcuts to Firebase
+            try {
+                db.collection('shortcuts').doc('categories').set(fallbackShortcuts);
+            } catch (e) {
+                console.error('Could not save to Firebase:', e);
+            }
+        });
+}
+
+function displayShortcuts(data) {
+  Object.keys(data).forEach(category => {
+    const container = document.getElementById(`${category}-container`);
+    if (container) {
+      container.innerHTML = '';
+      
+      data[category].forEach(shortcut => {
+        const shortcutElement = createShortcutElement(shortcut);
+        container.appendChild(shortcutElement);
+      });
+    }
+  });
+}
+
+// Add toast container to body
+function createToastContainer() {
+  if (!document.querySelector('.toast')) {
+    const toast = document.createElement('div');
+    toast.className = 'toast';
+    document.body.appendChild(toast);
+  }
+}
+
+// Show floating edit button
+function showFloatingEditButton(category) {
+  // Remove any existing floating edit buttons
+  const existingBtn = document.querySelector('.floating-edit-btn');
+  if (existingBtn) {
+    existingBtn.remove();
+  }
+  
+  // Create new floating edit button
+  const editBtn = document.createElement('button');
+  editBtn.className = 'floating-edit-btn';
+  editBtn.innerHTML = `
+    <svg class="edit-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14">
+      <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
+      <path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path>
+    </svg>
+    Edit
+  `;
+  
+  editBtn.onclick = function() {
+    closeModal();
+    openEditModal(category);
+  };
+  
+  document.body.appendChild(editBtn);
+  
+  setTimeout(() => {
+    const modal = document.querySelector('.modal-content');
+    if (modal) {
+      const modalRect = modal.getBoundingClientRect();
+      
+      // Position button below the modal and align to the right
+      editBtn.style.position = 'fixed';
+      editBtn.style.top = `${modalRect.bottom + 10}px`; // 10px gap below modal
+      editBtn.style.left = `${modalRect.right - editBtn.offsetWidth - 20}px`; // Align to right with 20px margin
+      editBtn.style.transform = 'none'; // Override default transform
+      
+      editBtn.classList.add('show');
+    }
+  }, 100);
+}
+
+// Modify closeModal function to also remove the floating edit button
+function closeModal(modalId = 'shortcut-modal') {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+        document.getElementById('container').style.filter = 'none';
+        
+        // Remove floating edit button if present
+        const editBtn = document.querySelector('.floating-edit-btn');
+        if (editBtn) {
+            editBtn.classList.remove('show');
+            setTimeout(() => {
+                editBtn.remove();
+            }, 300);
+        }
+    }
+}
+
+// Consolidated event listeners
+document.addEventListener('DOMContentLoaded', () => {
+    // Initial container opacity animation
+    document.getElementById('container').style.opacity = '0';
+    setTimeout(() => {
+        document.getElementById('container').style.opacity = '1';
+    }, 100);
+    
+    // Setup other components
+    setupSearchEvents();
+    loadShortcuts();
+    createToastContainer();
+    setupModalEventListeners();
+    setupSearchContainerClickHandler();
+    
+    // Set up global event handlers
+    document.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        return false;
+    }, false);
+    
+    document.addEventListener('keydown', function(e) {
+        if ((e.ctrlKey && (e.key === 's' || e.key === 'S' || e.key === 'u' || e.key === 'U')) || 
+            (e.ctrlKey && e.shiftKey && (e.key === 'i' || e.key === 'I' || e.key === 'j' || e.key === 'J')) ||
+            e.key === 'F12') {
+            e.preventDefault();
+            return false;
+        }
+    }, false);
+    
+    document.addEventListener('dragstart', function(e) {
+        e.preventDefault();
+        return false;
+    }, false);
+    
+    document.addEventListener('visibilitychange', function() {
+        if (document.visibilityState === 'hidden') {
+            // Your existing code was empty here
+        }
+    });
+});
+    </script>
+</body>
+</html>
