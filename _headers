@@ -1,8 +1,6 @@
-/*  
-  X-Frame-Options: DENY  
-  X-Content-Type-Options: nosniff  
-  X-XSS-Protection: 1; mode=block  
-  Content-Security-Policy: default-src 'self';  
-  img-src 'self' data: https://www.google.com/s2/favicons;  
-  Referrer-Policy: no-referrer  
-  Permissions-Policy: geolocation=(), microphone=(), camera=(), fullscreen=()  
+/* 
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval'; style-src 'self' 'unsafe-inline'; img-src * data: blob:; font-src 'self' data:; object-src 'none'; frame-ancestors 'none';
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: no-referrer
+  Permissions-Policy: geolocation=(), microphone=(), camera=()
