@@ -1,5 +1,5 @@
 /* 
-  X-Frame-Options: SAMEORIGIN
+  X-Frame-Options: DENY
   X-Content-Type-Options: nosniff
   X-XSS-Protection: 1; mode=block
   Referrer-Policy: no-referrer
@@ -11,7 +11,6 @@
     img-src 'self' data: https://firebasestorage.googleapis.com; 
     font-src 'self' data: https://fonts.gstatic.com https://fonts.googleapis.com;
     connect-src 'self' https://firestore.googleapis.com https://identitytoolkit.googleapis.com https://firebasestorage.googleapis.com https://firebaseinstallations.googleapis.com;
-    frame-ancestors 'none';
   Access-Control-Allow-Origin: *
   Access-Control-Allow-Methods: GET, POST, OPTIONS
   Content-Disposition: inline
