@@ -1,4 +1,5 @@
-Content-Security-Policy: default-src 'self' https://firestore.googleapis.com https://*.firebaseio.com https://*.firebaseapp.com; 
+/*  
+  Content-Security-Policy: default-src 'self' https://firestore.googleapis.com https://*.firebaseio.com https://*.firebaseapp.com; 
   img-src 'self' data: blob: https://www.google.com https://www.gstatic.com https://www.googleusercontent.com https://firebasestorage.googleapis.com; 
   script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.gstatic.com https://www.googletagmanager.com https://*.firebaseio.com https://*.firebaseapp.com; 
   style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
