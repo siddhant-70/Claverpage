@@ -1,0 +1,30 @@
+{
+  "tools": [
+    {
+      "name": "ChatGPT",
+      "url": "https://chatgpt.com",
+      "icon": "https://www.google.com/s2/favicons?sz=64&domain=chatgpt.com"
+    }
+  ],
+  "productivity": [
+    {
+      "name": "Notion",
+      "url": "https://notion.com",
+      "icon": "https://www.google.com/s2/favicons?sz=64&domain=notion.com"
+    }
+  ],
+  "utilities": [
+    {
+      "name": "Weather",
+      "url": "https://weather.com",
+      "icon": "https://www.google.com/s2/favicons?sz=64&domain=weather.com"
+    }
+  ],
+  "social": [
+    {
+      "name": "Twitter",
+      "url": "https://twitter.com",
+      "icon": "https://www.google.com/s2/favicons?sz=64&domain=twitter.com"
+    }
+  ]
+}
