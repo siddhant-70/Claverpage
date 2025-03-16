@@ -6,6 +6,7 @@
   img-src 'self' data: https://www.google.com/s2/favicons https://*.firebaseio.com https://*.googleapis.com https://*.gstatic.com;  
   script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.firebaseio.com https://*.googleapis.com https://cdnjs.cloudflare.com https://*.gstatic.com;  
   style-src 'self' 'unsafe-inline' https://*.googleapis.com https://cdnjs.cloudflare.com https://*.gstatic.com;  
+  font-src 'self' https://fonts.gstatic.com https://*.googleapis.com;  
   connect-src 'self' https://*.firebaseio.com https://*.googleapis.com https://*.gstatic.com;  
   Referrer-Policy: no-referrer  
   Permissions-Policy: geolocation=(), microphone=(), camera=(), fullscreen=()  
