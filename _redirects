@@ -2,11 +2,9 @@
 /claver /claver.html 200
 / /index.html 200
 
-# Block direct access to source files
+# Blocking specific files (except _headers and _redirects)
 /LICENSE 404
 /README.md 404
-/_headers 404
-/_redirects 404
 /shortcuts.json 403
 /quick.json 403
 /firebase.json 404
